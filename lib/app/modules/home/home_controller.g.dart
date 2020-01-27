@@ -8,33 +8,34 @@ part of 'home_controller.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$HomeController on _HomeBase, Store {
-  final _$valueAtom = Atom(name: '_HomeBase.value');
+mixin _$HomeController on _HomeControllerBase, Store {
+  final _$pokemonsAtom = Atom(name: '_HomeControllerBase.pokemons');
 
   @override
-  int get value {
-    _$valueAtom.context.enforceReadPolicy(_$valueAtom);
-    _$valueAtom.reportObserved();
-    return super.value;
+  ObservableFuture<List<PokemonModel>> get pokemons {
+    _$pokemonsAtom.context.enforceReadPolicy(_$pokemonsAtom);
+    _$pokemonsAtom.reportObserved();
+    return super.pokemons;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.context.conditionallyRunInAction(() {
-      super.value = value;
-      _$valueAtom.reportChanged();
-    }, _$valueAtom, name: '${_$valueAtom.name}_set');
+  set pokemons(ObservableFuture<List<PokemonModel>> value) {
+    _$pokemonsAtom.context.conditionallyRunInAction(() {
+      super.pokemons = value;
+      _$pokemonsAtom.reportChanged();
+    }, _$pokemonsAtom, name: '${_$pokemonsAtom.name}_set');
   }
 
-  final _$_HomeBaseActionController = ActionController(name: '_HomeBase');
+  final _$_HomeControllerBaseActionController =
+      ActionController(name: '_HomeControllerBase');
 
   @override
-  void increment() {
-    final _$actionInfo = _$_HomeBaseActionController.startAction();
+  dynamic fetchPokemons() {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction();
     try {
-      return super.increment();
+      return super.fetchPokemons();
     } finally {
-      _$_HomeBaseActionController.endAction(_$actionInfo);
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 }
